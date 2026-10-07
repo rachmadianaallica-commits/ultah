@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday 🎂</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      color: white;
+    }
+
+    /* Background */
+    .background {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      z-index: -1;
+    }
+
+    .heart {
+      position: absolute;
+      bottom: -50px;
+      font-size: 25px;
+      animation: naik 8s linear infinite;
+      opacity: 0.7;
+    }
+
+    @keyframes naik {
+      0% {
+        transform: translateY(0) rotate(0);
+        opacity: 0;
+      }
+      20% {
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 30px;
+    }
+
+    .card {
+      width: min(90%, 700px);
+      padding: 50px 30px;
+      border-radius: 30px;
+      background: rgba(255,255,255,0.18);
+      backdrop-filter: blur(15px);
+      border: 1px solid rgba(255,255,255,0.3);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+    }
+
+    .cake {
+      font-size: 80px;
+      animation: goyang 2s infinite ease-in-out;
+    }
+
+    @keyframes goyang {
+      0%, 100% {
+        transform: rotate(-5deg);
+      }
+      50% {
+        transform: rotate(5deg) scale(1.08);
+      }
+    }
+
+    h1 {
+      font-size: clamp(40px, 8vw, 75px);
+      margin: 10px 0;
+      text-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    .nama {
+      color: #fff700;
+      text-shadow: 0 0 20px rgba(255,255,0,0.6);
+    }
+
+    .subtitle {
+      font-size: 20px;
+      margin: 15px auto 30px;
+      max-width: 550px;
+      line-height: 1.7;
+    }
+
+    button {
+      border: none;
+      padding: 14px 28px;
+      border-radius: 50px;
+      background: white;
+      color: #ff5f7e;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      transition: 0.3s;
+    }
+
+    button:hover {
+      transform: translateY(-4px) scale(1.05);
+    }
+
+    /* Message */
+    .message-section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+
+    .message {
+      max-width: 650px;
+      padding: 40px;
+      background: rgba(255,255,255,0.2);
+      backdrop-filter: blur(15px);
+      border-radius: 25px;
+      text-align: center;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+    }
+
+    .message h2 {
+      font-size: 38px;
+      margin-bottom: 20px;
+    }
+
+    .message p {
+      line-height: 2;
+      font-size: 17px;
+    }
+
+    /* Countdown */
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin: 30px 0;
+      flex-wrap: wrap;
+    }
+
+    .time-box {
+      background: rgba(255,255,255,0.25);
+      padding: 15px;
+      min-width: 80px;
+      border-radius: 15px;
+    }
+
+    .time-box span {
+      display: block;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .time-box small {
+      font-size: 12px;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 30px;
+      background: rgba(0,0,0,0.1);
+    }
+
+    /* Confetti */
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      top: -20px;
+      z-index: 999;
+      animation: confettiFall 4s linear forwards;
+    }
+
+    @keyframes confettiFall {
+      to {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0;
+      }
+    }
+
+    /* Popup */
+    .popup {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      padding: 20px;
+    }
+
+    .popup-content {
+      background: linear-gradient(135deg, #ff758c, #ff7eb3);
+      padding: 40px;
+      max-width: 500px;
+      text-align: center;
+      border-radius: 25px;
+      animation: muncul 0.5s ease;
+    }
+
+    .popup-content h2 {
+      font-size: 35px;
+      margin-bottom: 15px;
+    }
+
+    .popup-content p {
+      line-height: 1.8;
+      margin-bottom: 25px;
+    }
+
+    @keyframes muncul {
+      from {
+        transform: scale(0.5);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="background" id="background"></div>
+
+  <section class="hero">
+    <div class="card">
+
+      <div class="cake">🎂</div>
+
+      <p>Hari matkul pa handy</p>
+
+      <h1>
+        Happy Birthday<br>
+        <span class="nama">Sayang! 💖</span>
+      </h1>
+
+      <p class="subtitle">
+        Semoga hari ini dipenuhi kebahagiaan,
+        tawa, cinta, dan semua hal indah yang kamu impikan.
+      </p>
+
+      <div class="countdown">
+        <div class="time-box">
+          <span id="days">00</span>
+          <small>Hari</small>
+        </div>
+
+        <div class.="time-box">
+          <span id="hours">00</span>
+          <small>Jam</small>
+        </div>
+
+        <div class="time-box">
+          <span id="minutes">00</span>
+          <small>Menit</small>
+        </div>
+
+        <div class="time-box">
+          <span id="seconds">00</span>
+          <small>Detik</small>
+        </div>
+      </div>
+
+      <button onclick="bukaSurprise()">
+        🎁 Buka Surprise
+      </button>
+
+    </div>
+  </section>
+
+
+  <section class="message-section">
+
+    <div class="message">
+
+      <h2>💌 Sebuah Pesan Untukmu</h2>
+
+      <p>
+        Selamat ulang tahun untuk seseorang yang sangat spesial.
+        Semoga bertambahnya usia membawa lebih banyak kebahagiaan,
+        kesehatan, kesuksesan, dan cerita indah dalam hidupmu.
+        <br><br>
+        Jangan pernah berhenti bermimpi dan menjadi versi terbaik
+        dari dirimu sendiri.
+        <br><br>
+        <b>Happy Birthday! 🎉❤️</b>
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <footer>
+    Dibuat dengan ❤️ khusus untukmu
+  </footer>
+
+
+  <!-- Popup -->
+  <div class="popup" id="popup">
+
+    <div class="popup-content">
+
+      <h2>🎉 Surprise! 🎉</h2>
+
+      <p>
+        Hari ini bukan cuma tentang bertambahnya usia,
+        tapi tentang merayakan betapa berharganya dirimu.
+        <br><br>
+        Semoga semua doa baikmu satu per satu menjadi nyata.
+        ❤️
+      </p>
+
+      <button onclick="tutupSurprise()">
+        ❤️ Terima Kasih
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <script>
+
+    /* =========================
+       NAMA & TANGGAL ULANG TAHUN
+       ========================= */
+
+    const nama = "Sayang";
+
+    // Format: Tahun, Bulan - 1, Tanggal
+    // Contoh 7 Oktober 2026 = new Date(2026, 9, 7)
+    const tanggalUlangTahun = new Date(2026, 9, 7);
+
+
+    /* =========================
+       GANTI NAMA
+       ========================= */
+
+    document.querySelector(".nama").textContent =
+      nama + "! 💖";
+
+
+    /* =========================
+       COUNTDOWN
+       ========================= */
+
+    function updateCountdown() {
+
+      const sekarang = new Date();
+
+      let target = new Date(tanggalUlangTahun);
+
+      // Kalau ulang tahun tahun ini sudah lewat,
+      // countdown menuju tahun berikutnya.
+      if (target < sekarang) {
+        target.setFullYear(sekarang.getFullYear() + 1);
+      }
+
+      const selisih = target - sekarang;
+
+      const hari = Math.floor(
+        selisih / (1000 * 60 * 60 * 24)
+      );
+
+      const jam = Math.floor(
+        (selisih / (1000 * 60 * 60)) % 24
+      );
+
+      const menit = Math.floor(
+        (selisih / (1000 * 60)) % 60
+      );
+
+      const detik = Math.floor(
+        (selisih / 1000) % 60
+      );
+
+      document.getElementById("days").textContent =
+        String(hari).padStart(2, "0");
+
+      document.getElementById("hours").textContent =
+        String(jam).padStart(2, "0");
+
+      document.getElementById("minutes").textContent =
+        String(menit).padStart(2, "0");
+
+      document.getElementById("seconds").textContent =
+        String(detik).padStart(2, "0");
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+
+    /* =========================
+       POPUP
+       ========================= */
+
+    function bukaSurprise() {
+
+      document.getElementById("popup").style.display =
+        "flex";
+
+      buatConfetti();
+    }
+
+    function tutupSurprise() {
+
+      document.getElementById("popup").style.display =
+        "none";
+    }
+
+
+    /* =========================
+       CONFETTI
+       ========================= */
+
+    function buatConfetti() {
+
+      const warna = [
+        "#ff4757",
+        "#ffd32a",
+        "#05c46b",
+        "#18dcff",
+        "#575fcf",
+        "#ff6b81",
+        "#ffffff"
+      ];
+
+      for (let i = 0; i < 100; i++) {
+
+        const confetti =
+          document.createElement("div");
+
+        confetti.classList.add("confetti");
+
+        confetti.style.left =
+          Math.random() * 100 + "vw";
+
+        confetti.style.background =
+          warna[Math.floor(Math.random() * warna.length)];
+
+        confetti.style.animationDuration =
+          (Math.random() * 3 + 2) + "s";
+
+        confetti.style.transform =
+          `rotate(${Math.random() * 360}deg)`;
+
+        document.body.appendChild(confetti);
+
+        setTimeout(() => {
+          confetti.remove();
+        }, 5000);
+      }
+    }
+
+
+    /* =========================
+       ANIMASI HATI
+       ========================= */
+
+    function buatHati() {
+
+      const heart =
+        document.createElement("div");
+
+      heart.className = "heart";
+
+      heart.textContent =
+        ["❤️", "💖", "💕", "💗", "💓"]
+        [Math.floor(Math.random() * 5)];
+
+      heart.style.left =
+        Math.random() * 100 + "vw";
+
+      heart.style.animationDuration =
+        (Math.random() * 5 + 5) + "s";
+
+      heart.style.fontSize =
+        (Math.random() * 20 + 15) + "px";
+
+      document.getElementById("background")
+        .appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 10000);
+    }
+
+    setInterval(buatHati, 500);
+
+  </script>
+
+</body>
+</html>
